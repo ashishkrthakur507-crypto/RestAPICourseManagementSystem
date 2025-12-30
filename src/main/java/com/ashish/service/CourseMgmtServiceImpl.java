@@ -49,7 +49,7 @@ public class CourseMgmtServiceImpl implements ICourseMgmtService {
 		System.out.println("CourseMgmtServiceImpl.getAllCourse()");
 		List<Course> listOfAllCourse = courseRepo.findAll();
 		if(listOfAllCourse.isEmpty()) {
-			throw new CustomException("No Course Found in the DataBase!!");
+			throw new CustomException("No Course Found in the DataBase! !");
 		}
 		return listOfAllCourse;
 	}
