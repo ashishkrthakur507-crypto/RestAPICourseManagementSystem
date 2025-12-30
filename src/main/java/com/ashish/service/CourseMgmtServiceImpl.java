@@ -25,6 +25,8 @@ public class CourseMgmtServiceImpl implements ICourseMgmtService {
 	@Override
 	public String addCourse(Course course) {
 		
+		System.out.println("CourseMgmtServiceImpl.addCourse()");
+		
 		if(course.getDuration()>=1 && course.getFees()>=0) {
 			Integer courseSavedId = courseRepo.save(course).getCourseId();
 			return "Course is saved with id :: "+courseSavedId;
@@ -44,6 +46,7 @@ public class CourseMgmtServiceImpl implements ICourseMgmtService {
 
 	@Override
 	public List<Course> getAllCourse() {
+		System.out.println("CourseMgmtServiceImpl.getAllCourse()");
 		List<Course> listOfAllCourse = courseRepo.findAll();
 		if(listOfAllCourse.isEmpty()) {
 			throw new CustomException("No Course Found in the DataBase!!");
@@ -53,6 +56,7 @@ public class CourseMgmtServiceImpl implements ICourseMgmtService {
 
 	@Override
 	public Course updateCourse(Integer id, Course course) {
+		System.out.println("CourseMgmtServiceImpl.updateCourse()");
 		Course oldCourse = courseRepo.findById(id).orElseThrow(()-> new CustomException(id+" Course is not Found!!"));
 		if(course.getDuration()<1 || course.getFees()<1) {
 			throw new CustomException("Course Duration and Fee must be >=1");
@@ -67,7 +71,7 @@ public class CourseMgmtServiceImpl implements ICourseMgmtService {
 
 	@Override
 	public void deleteCourse(Integer id) {
-		
+		System.out.println("CourseMgmtServiceImpl.deleteCourse()");
 		Course courses = courseRepo.findById(id).orElseThrow(()-> new CustomException(id+" Course is not Found!!"));
 		courseRepo.deleteById(id);
 		
